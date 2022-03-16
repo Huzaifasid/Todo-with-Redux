@@ -7,11 +7,7 @@ const Todo = () => {
 
   const lists = useSelector((state) => state.todoReducers.list);
   const dispatch = useDispatch();
-  const autoData = (e) => {
-    e.preventDefault();
-    
-    dispatch(addTodo(inputData), setInputData(""));
-  };
+ 
   return (
     <>
       <div className="container text-center  ">
@@ -19,7 +15,7 @@ const Todo = () => {
           <div className="col-sm  col-lg-5">
             <h1>Todo List</h1>
 
-            <form onSubmit={autoData} className="d-flex align-items-center ">
+            <div  className="d-flex align-items-center ">
               <input
                 type="text"
                 className="form-control"
@@ -29,7 +25,7 @@ const Todo = () => {
                 onChange={(event) => setInputData(event.target.value)}
               />
               <button
-                type="submit"
+                onClick={()=>dispatch(addTodo(inputData), setInputData(""))}
                 className="mx-1 px-2 btn btn-primary text-white btn-outline-dark"
               >
                 <i className="fa-solid fa-plus"></i>
@@ -41,7 +37,7 @@ const Todo = () => {
               >
                 <i className="fa-solid fa-trash"></i>
               </button>
-            </form>
+            </div>
             <div>
               {lists.map((elem) => {
                 return (

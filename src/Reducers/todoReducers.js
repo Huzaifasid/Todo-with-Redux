@@ -5,6 +5,7 @@ const todoReducers = (state = initialData, action) => {
     switch (action.type) {
         case 'ADD_TODO':
             const { id, data } = action.payload
+           if(data.length>2){
             return {
                 ...state,
                 list: [...state.list,
@@ -14,6 +15,12 @@ const todoReducers = (state = initialData, action) => {
                 }
                 ]
             }
+           }
+           else{
+               alert('Pleas fill Atleast 3 Values');
+           }
+           
+      
         case 'DEL_TODO':
            const newList = state.list.filter((elem)=> elem.id !== action.id)
             return {
